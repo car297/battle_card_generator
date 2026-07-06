@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Card Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ Battle Card Generator</h1>
+            <p class="subtitle">AI-powered competitor battle cards for sales teams.</p>
+        </header>
+
+        {% if error %}
+        <div class="alert">{{ error }}</div>
+        {% endif %}
+
+        <form action="{{ url_for('generate') }}" method="post" class="battle-form" id="battle-form">
+            <label for="competitor_name">Competitor Name</label>
+            <input
+                type="text"
+                id="competitor_name"
+                name="competitor_name"
+                placeholder="e.g. HubSpot"
+                required
+            >
+
+            <label for="your_product_name">Your Product Name</label>
+            <input
+                type="text"
+                id="your_product_name"
+                name="your_product_name"
+                placeholder="e.g. Acme Sales Pro"
+                required
+            >
+
+            <label for="your_key_strengths">Your Key Strengths</label>
+            <textarea
+                id="your_key_strengths"
+                name="your_key_strengths"
+                rows="4"
+                placeholder="e.g. Easy to use, affordable pricing, better customer support, faster onboarding"
+                required
+            ></textarea>
+
+            <button type="submit" id="submit-btn">Generate Battle Card</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('battle-form').addEventListener('submit', function () {
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Researching & Generating…';
+        });
+    </script>
+</body>
+</html>
