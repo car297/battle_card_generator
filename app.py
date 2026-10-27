@@ -103,6 +103,13 @@ def generate_battle_card(competitor_name, your_product_name, your_key_strengths)
     # Step 1: MCP tool call
     competitor_info = mcp_web_search(competitor_name)
 
+    # Key strengths are optional — if left blank, have Gemini infer them
+    if not your_key_strengths:
+        your_key_strengths = (
+            f"Not provided — infer likely differentiators for {your_product_name} "
+            "from general knowledge and the competitor's weaknesses."
+        )
+
     # Step 2: Gemini agent generates the battle card
     prompt = f"""
     You are an expert sales enablement agent. Analyze this competitor information
@@ -197,10 +204,11 @@ def generate():
     your_product_name = request.form.get("your_product_name", "").strip()
     your_key_strengths = request.form.get("your_key_strengths", "").strip()
 
-    if not competitor_name or not your_product_name or not your_key_strengths:
+    # Key strengths are optional; competitor and product names are required
+    if not competitor_name or not your_product_name:
         return render_template(
             "index.html",
-            error="Please fill in all fields before generating a battle card.",
+            error="Please enter a competitor name and your product name before generating a battle card.",
         )
 
     try:
