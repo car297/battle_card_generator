@@ -11,7 +11,7 @@ notebook as the source of truth for:
 - The exact Gemini API client setup (google-genai SDK, not google-generativeai)
 - The mcp_web_search() function implementation
 - The generate_battle_card() function and prompt structure
-- The model name: gemini-3.1-flash-lite
+- The model name: gemini-3.5-flash-lite
 
 ## What To Build
 A Flask web app with:

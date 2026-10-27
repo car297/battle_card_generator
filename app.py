@@ -34,7 +34,7 @@ if not GOOGLE_API_KEY:
     )
 
 client = genai.Client(api_key=GOOGLE_API_KEY)
-MODEL_NAME = "gemini-3.1-flash-lite"
+MODEL_NAME = "gemini-3.5-flash-lite"
 
 app = Flask(__name__)
 
